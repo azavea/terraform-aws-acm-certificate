@@ -2,6 +2,12 @@ resource "aws_acm_certificate" "default" {
   domain_name               = "${var.domain_name}"
   subject_alternative_names = ["${var.subject_alternative_names}"]
   validation_method         = "DNS"
+  provider                  = "aws.cert"
+
+  tags {
+    Name      = "${var.domain_name}"
+    terraform = "true"
+  }
 }
 
 resource "aws_route53_record" "validation" {
@@ -16,6 +22,7 @@ resource "aws_route53_record" "validation" {
 
 resource "aws_acm_certificate_validation" "default" {
   certificate_arn = "${aws_acm_certificate.default.arn}"
+  provider        = "aws.cert"
 
   validation_record_fqdns = [
     "${aws_route53_record.validation.*.fqdn}",
