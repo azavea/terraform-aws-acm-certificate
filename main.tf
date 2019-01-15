@@ -1,11 +1,14 @@
 resource "aws_acm_certificate" "default" {
+  provider                  = "aws.acm_account"
   domain_name               = "${var.domain_name}"
   subject_alternative_names = ["${var.subject_alternative_names}"]
   validation_method         = "DNS"
+  tags                      = "${merge(map("Name", var.domain_name), var.acm_certificate_tags)}"
 }
 
 resource "aws_route53_record" "validation" {
-  count = "${length(var.subject_alternative_names) + 1}"
+  provider = "aws.route53_account"
+  count    = "${length(var.subject_alternative_names) + 1}"
 
   name    = "${lookup(aws_acm_certificate.default.domain_validation_options[count.index], "resource_record_name")}"
   type    = "${lookup(aws_acm_certificate.default.domain_validation_options[count.index], "resource_record_type")}"
@@ -15,6 +18,7 @@ resource "aws_route53_record" "validation" {
 }
 
 resource "aws_acm_certificate_validation" "default" {
+  provider        = "aws.acm_account"
   certificate_arn = "${aws_acm_certificate.default.arn}"
 
   validation_record_fqdns = [
