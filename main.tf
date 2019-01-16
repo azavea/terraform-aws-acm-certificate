@@ -3,7 +3,7 @@ resource "aws_acm_certificate" "default" {
   domain_name               = "${var.domain_name}"
   subject_alternative_names = ["${var.subject_alternative_names}"]
   validation_method         = "DNS"
-  tags                      = "${merge(map("Name", var.domain_name), var.acm_certificate_tags)}"
+  tags                      = "${merge(map("Name", var.domain_name), var.tags)}"
 }
 
 resource "aws_route53_record" "validation" {

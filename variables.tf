@@ -17,7 +17,7 @@ variable "validation_record_ttl" {
   default = "60"
 }
 
-variable "acm_certificate_tags" {
-  description = "map of tags to attach to the ACM certificate"
+variable "tags" {
+  description = "extra tags to attach to the ACM certificate"
   default     = {}
 }
