@@ -1,11 +1,25 @@
-variable "domain_name" {}
-
-variable "subject_alternative_names" {
-  type = "list"
+variable "domain_name" {
+  type        = "string"
+  description = "Primary certificate domain name"
 }
 
-variable "hosted_zone_id" {}
+variable "subject_alternative_names" {
+  type        = "list"
+  default     = []
+  description = "Subject alternative domain names"
+}
+
+variable "hosted_zone_id" {
+  type        = "string"
+  description = "Route 53 Zone ID for DNS validation records"
+}
 
 variable "validation_record_ttl" {
-  default = "60"
+  default     = "60"
+  description = "Route 53 time-to-live for validation records"
+}
+
+variable "tags" {
+  default     = {}
+  description = "Extra tags to attach to the ACM certificate"
 }

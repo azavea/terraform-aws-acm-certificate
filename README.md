@@ -5,12 +5,27 @@ A Terraform module to create an Amazon Certificate Manager (ACM) certificate wit
 ## Usage
 
 ```hcl
+provider "aws" {
+  region = "us-east-1"
+  alias  = "certificates"
+}
+
+provider "aws" {
+  region = "us-west-2"
+  alias  = "dns"
+}
+
 resource "aws_route53_zone" "default" {
   name = "azavea.com"
 }
 
 module "cert" {
-  source = "github.com/azavea/terraform-aws-acm-certificate?ref=0.1.0"
+  source = "github.com/azavea/terraform-aws-acm-certificate?ref=1.0.0"
+
+  providers = {
+    aws.acm_account     = "aws.certificates"
+    aws.route53_account = "aws.dns"
+  }
 
   domain_name               = "azavea.com"
   subject_alternative_names = ["*.azavea.com"]
@@ -21,10 +36,11 @@ module "cert" {
 
 ## Variables
 
-- `domain_name` - Primary domain name associated with certificate
-- `subject_alternative_names` - Subject alternative domain names
-- `hosted_zone_id` - Route 53 hosted zone ID for `domain_name`
-- `validation_record_ttl` - Route 53 record time-to-live (TTL) for validation record (default: `60`)
+- `domain_name` - Primary domain name associated with certificate. Also used for the Name tag of the ACM certificate.
+- `subject_alternative_names` - Subject alternative domain names.
+- `hosted_zone_id` - Route 53 hosted zone ID for `domain_name`.
+- `validation_record_ttl` - Route 53 record time-to-live (TTL) for validation record (default: `60`).
+- `tags` - A map of extra tags that is associated with the ACM Certificate.
 
 ## Outputs
 
