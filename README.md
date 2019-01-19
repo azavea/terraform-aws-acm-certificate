@@ -5,12 +5,22 @@ A Terraform module to create an Amazon Certificate Manager (ACM) certificate wit
 ## Usage
 
 ```hcl
+provider "aws" {
+  region = "us-east-1"
+  alias  = "certificates"
+}
+
+provider "aws" {
+  region = "us-west-2"
+  alias  = "dns"
+}
+
 resource "aws_route53_zone" "default" {
   name = "azavea.com"
 }
 
 module "cert" {
-  source = "github.com/azavea/terraform-aws-acm-certificate?ref=0.1.0"
+  source = "github.com/azavea/terraform-aws-acm-certificate?ref=1.0.0"
 
   providers = {
     aws.acm_account     = "aws.certificates"
@@ -21,16 +31,6 @@ module "cert" {
   subject_alternative_names = ["*.azavea.com"]
   hosted_zone_id            = "${aws_route53_zone.default.zone_id}"
   validation_record_ttl     = "60"
-}
-
-provider "aws" {
-  region = "us-east-1"
-  alias  = "certificates"
-}
-
-provider "aws" {
-  region = "us-west-2"
-  alias  = "dns"
 }
 ```
 
