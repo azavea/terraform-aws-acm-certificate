@@ -1,23 +1,25 @@
 variable "domain_name" {
   type        = "string"
-  description = "primary certificate domain name"
+  description = "Primary certificate domain name"
 }
 
 variable "subject_alternative_names" {
-  type    = "list"
-  default = []
+  type        = "list"
+  default     = []
+  description = "Subject alternative domain names"
 }
 
 variable "hosted_zone_id" {
   type        = "string"
-  description = "Route53 Zone ID where DNS validation records will be created"
+  description = "Route 53 Zone ID for DNS validation records"
 }
 
 variable "validation_record_ttl" {
-  default = "60"
+  default     = "60"
+  description = "Route 53 time-to-live for validation records"
 }
 
 variable "tags" {
-  description = "extra tags to attach to the ACM certificate"
   default     = {}
+  description = "Extra tags to attach to the ACM certificate"
 }
