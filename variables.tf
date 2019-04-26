@@ -19,6 +19,11 @@ variable "validation_record_ttl" {
   description = "Route 53 time-to-live for validation records"
 }
 
+variable "allow_validation_record_overwrite" {
+  default     = "true"
+  description = "Allow Route 53 record creation to overwrite existing records"
+}
+
 variable "tags" {
   default     = {}
   description = "Extra tags to attach to the ACM certificate"
