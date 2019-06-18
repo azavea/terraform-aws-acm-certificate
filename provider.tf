@@ -17,4 +17,6 @@ provider "aws" {
  * https://git.io/fh0qw
  */
 
-provider "aws" {}
+provider "aws" {
+}
+
