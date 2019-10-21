@@ -1,5 +1,7 @@
 # terraform-aws-acm-certificate
 
+[![CircleCI](https://circleci.com/gh/azavea/terraform-aws-acm-certificate.svg?style=svg)](https://circleci.com/gh/azavea/terraform-aws-acm-certificate)
+
 A Terraform module to create an Amazon Certificate Manager (ACM) certificate with Route 53 DNS validation.
 
 ## Usage
