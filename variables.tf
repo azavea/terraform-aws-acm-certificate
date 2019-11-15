@@ -4,8 +4,8 @@ variable "domain_name" {
 }
 
 variable "subject_alternative_names" {
-  type        = list(string)
   default     = []
+  type        = list(string)
   description = "Subject alternative domain names"
 }
 
@@ -15,17 +15,20 @@ variable "hosted_zone_id" {
 }
 
 variable "validation_record_ttl" {
-  default     = "60"
+  default     = 60
+  type        = number
   description = "Route 53 time-to-live for validation records"
 }
 
 variable "allow_validation_record_overwrite" {
-  default     = "true"
+  default     = true
+  type        = bool
   description = "Allow Route 53 record creation to overwrite existing records"
 }
 
 variable "tags" {
   default     = {}
+  type        = map(string)
   description = "Extra tags to attach to the ACM certificate"
 }
 
