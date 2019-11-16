@@ -6,9 +6,7 @@ resource "aws_acm_certificate" "default" {
 
   tags = merge(
     {
-      Name        = var.domain_name,
-      Project     = var.project,
-      Environment = var.environment
+      Name = var.domain_name
     },
     var.tags,
   )
