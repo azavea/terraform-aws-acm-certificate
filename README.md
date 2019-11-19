@@ -6,6 +6,8 @@ A Terraform module to create an Amazon Certificate Manager (ACM) certificate wit
 
 ## Usage
 
+When making use of this module, ensure that either the `AWS_DEFAULT_REGION` or `AWS_REGION` environment variable is set. This helps bypass [validation checks](https://github.com/hashicorp/terraform/issues/21408) that want the `provider` blocks within this module to have a `region` attribute specified.
+
 ```hcl
 provider "aws" {
   region = "us-east-1"
