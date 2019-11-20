@@ -1,3 +1,8 @@
+## 2.0.0
+
+- Add support for Terraform 0.12.
+- Add continuous integration support via CircleCI.
+
 ## 1.1.0
 
 - Add option for DNS validation record overwrite.
