@@ -7,7 +7,7 @@ resource "aws_acm_certificate" "default" {
   lifecycle {
     create_before_destroy = true
   }
-  
+
   tags = merge(
     {
       Name = var.domain_name
