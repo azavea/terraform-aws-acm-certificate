@@ -1,3 +1,7 @@
+## 2.1.0
+
+- Adjust for terraform aws provider version 3.0.0
+
 ## 2.0.1
 
 - Add `create_before_destroy` lifecycle block to `aws_acm_certificate`.
