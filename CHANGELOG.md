@@ -1,3 +1,7 @@
+## 4.0.0
+
+- Use `configuration_aliases` to define alternative providers.
+
 ## 3.0.0
 
 - Add support for version 3.x of the Terraform AWS provider.
