@@ -1,6 +1,9 @@
 terraform {
-  required_version = ">= 0.12"
+  required_version = ">= 0.15"
   required_providers {
-    aws = ">= 3.0.0"
+    aws = {
+      version               = ">= 3.0.0"
+      configuration_aliases = [aws.acm_account, aws.route53_account]
+    }
   }
 }
