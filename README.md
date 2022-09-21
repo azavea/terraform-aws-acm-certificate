@@ -10,12 +10,12 @@ When making use of this module, ensure that either the `AWS_DEFAULT_REGION` or `
 
 ```hcl
 provider "aws" {
-  region = "us-east-1"
+  region = var.cert_region
   alias  = "certificates"
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = var.dns_region
   alias  = "dns"
 }
 
@@ -40,7 +40,8 @@ module "cert" {
 ```
 
 ## Variables
-
+- `cert_region` - AWS Region to create ACM Certificate in (default: `us-east-1 `).
+- `dns_region` - AWS DNS region for associated `domain_name` (default: `us-west-2 `).
 - `domain_name` - Primary domain name associated with certificate. Also used for the Name tag of the ACM certificate.
 - `subject_alternative_names` - Subject alternative domain names.
 - `hosted_zone_id` - Route 53 hosted zone ID for `domain_name`.
