@@ -32,3 +32,14 @@ variable "tags" {
   description = "Extra tags to attach to the ACM certificate"
 }
 
+variable "cert_region" {
+  description = "Certificate AWS region"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "dns_region" {
+  description = "Certificate DNS AWS region"
+  type        = string
+  default     = "us-west-2"
+}
